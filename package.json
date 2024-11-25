@@ -1,0 +1,25 @@
+{
+	"name": "dcos-v3",
+	"version": "1.0.0",
+	"description": "The dcOS Discord Bot (v3)",
+	"main": "./src/index.ts",
+	"author": "xvcf",
+	"license": "MIT",
+	"private": true,
+	"dependencies": {
+		"discord.js": "^14.16.3",
+		"dotenv": "^16.4.5",
+		"mongoose": "^8.8.2",
+		"subbey": "^1.3.2"
+	},
+	"devDependencies": {
+		"tsup": "^8.3.5",
+		"tsx": "^4.19.2",
+		"typescript": "^5.7.2"
+	},
+	"scripts": {
+		"dev": "tsx watch src/index.ts",
+		"start": "node dist/index.js",
+		"build": "tsup src/index.ts --minify"
+	}
+}
