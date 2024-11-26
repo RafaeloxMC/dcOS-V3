@@ -34,3 +34,7 @@ export function createInfoEmbed(description: string): EmbedBuilder {
 export function createMemberColorEmbed(member: GuildMember, title: string, description: string, fields: APIEmbedField[], thumbnailUrl: string): EmbedBuilder {
     return createEmbed(title, description, member.displayColor, fields, thumbnailUrl);
 }
+
+export function createUnionErrorEmbed() {
+	return createErrorEmbed("This server has not created or joined a union yet! Please ask the sever's administrators to set this feature up.");
+}

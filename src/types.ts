@@ -1,4 +1,4 @@
-import { ChatInputCommandInteraction, Client, ClientOptions, Interaction, SlashCommandBuilder } from 'discord.js';
+import { ChatInputCommandInteraction, Client, ClientOptions, Interaction, SlashCommandBuilder, SlashCommandSubcommandsOnlyBuilder } from 'discord.js';
 import { Collection } from 'discord.js';
 
 export class dcOSClient<Ready extends boolean = boolean> extends Client {
@@ -22,6 +22,15 @@ export interface Event {
 }
 
 export interface Command {
-    data: SlashCommandBuilder;
+    data: SlashCommandBuilder | SlashCommandSubcommandsOnlyBuilder;
     execute: (interaction: ChatInputCommandInteraction, client: dcOSClient, ...args: any[]) => any;
+}
+
+export interface Union {
+    name: String,
+	short: String,
+	short_discrim: String,
+	description: String,
+	guild_id: String,
+	members: Array<String>,
 }
