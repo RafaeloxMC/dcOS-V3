@@ -8,15 +8,23 @@ export default async function handleCommands(client: dcOSClient) {
 	client.handleCommands = async (commandFolders, path) => {
 		client.commandArray = [];
 		for (let folder of commandFolders) {
-			const commandFiles = readdirSync(`${path}/${folder}`).filter((file) => file.endsWith(".js") || file.endsWith(".ts"));
+			const commandFiles = readdirSync(`${path}/${folder}`).filter(
+				(file) => file.endsWith(".js") || file.endsWith(".ts")
+			);
 			for (const file of commandFiles) {
-				const commandModule = await import(`../../${path}/${folder}/${file}`);
+				const commandModule = await import(
+					`../../${path}/${folder}/${file}`
+				);
 				const command: Command = commandModule.default || commandModule;
 				if (command.data && command.data.name) {
 					client.commands.set(command.data.name, command);
 					client.commandArray.push(command.data.toJSON());
+					console.log("Loaded command: " + command.data.name);
 				} else {
-					console.error("Command data or command name is undefined:", command);
+					console.error(
+						"Command data or command name is undefined:",
+						command
+					);
 				}
 			}
 		}
@@ -29,9 +37,12 @@ export default async function handleCommands(client: dcOSClient) {
 
 				console.log(`Loading ${client.commandArray.length} commands.`);
 
-				await rest.put(Routes.applicationCommands(config.CLIENT_ID || ""), {
-					body: client.commandArray,
-				});
+				await rest.put(
+					Routes.applicationCommands(config.CLIENT_ID || ""),
+					{
+						body: client.commandArray,
+					}
+				);
 
 				console.log("Successfully reloaded application (/) commands.");
 			} catch (error) {
