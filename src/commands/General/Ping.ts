@@ -12,7 +12,7 @@ const Ping: Command = {
 				createEmbed(
 					"Pinging...",
 					"Testing connection speed...",
-					[0, 255, 255]
+					[255, 255, 0]
 				),
 			],
 		});
