@@ -19,7 +19,7 @@ const Purge: Command = {
 	data: new SlashCommandBuilder()
 		.setName("purge")
 		.setDescription(
-			"Clear a whole channel. WARNING: This will delete all bot settings from a channel, not just from dcOS!"
+			"Clear a whole channel. This will delete all bot settings from a channel, not just from dcOS!"
 		)
 		.setDefaultMemberPermissions(PermissionFlagsBits.Administrator),
 	async execute(interaction, client, ...args) {
