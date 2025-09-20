@@ -3,7 +3,6 @@ import {
 	Message,
 	PermissionFlagsBits,
 	SlashCommandBuilder,
-	TextBasedChannel,
 	TextChannel,
 } from "discord.js";
 import { Command } from "../../types";
