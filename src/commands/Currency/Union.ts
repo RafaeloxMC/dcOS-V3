@@ -118,6 +118,10 @@ const Union: Command = {
 			const short = interaction.options.getString("tag");
 			const description = interaction.options.getString("description");
 
+			if (short && short?.length > 3) {
+				createErrorEmbed("Union tag is too long! (>3 characters)");
+			}
+
 			const union = await UnionSchema.findOne({ name: currency });
 
 			if (union) {
@@ -280,9 +284,10 @@ const Union: Command = {
 				});
 			}
 		} else if (subcommand === "list") {
-			const unions = await UnionSchema.find()
-				.sort({ members: -1 })
-				.limit(10);
+			const unions = await UnionSchema.find();
+
+			unions.sort((a, b) => b.members.length - a.members.length);
+			unions.slice(0, 9);
 
 			if (unions.length === 0) {
 				return interaction.editReply({
@@ -323,3 +328,5 @@ const Union: Command = {
 		}
 	},
 };
+
+export default Union;
